@@ -14,7 +14,6 @@ import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
 
 import * as React from 'react';
-import styles from './ReactTinyMce.module.scss';
 import { IReactTinyMceProps } from './IReactTinyMceProps';
 import './workbench.css';
 import { IReactTinyMceState } from './IReactTinyMceState';
@@ -56,11 +55,11 @@ export default class ReactTinyMce extends React.Component<IReactTinyMceProps, IR
    */
   public render(): React.ReactElement<IReactTinyMceProps> {
     return (
-      <div className={ styles.reactTinyMce }>
+      <div>
         {
           this.props.isReadMode
-          ? this.renderReadMode()
-          : this.renderEditMode()
+            ? this.renderReadMode()
+            : this.renderEditMode()
         }
       </div>
     );
@@ -81,7 +80,7 @@ export default class ReactTinyMce extends React.Component<IReactTinyMceProps, IR
             skin_url: "../../src/webparts/reactTinyMce/skins/pnp/"
           }}
           initialValue={this.state.content}
-          onChange={(event) => {this.handleChange(event.target.getContent());}}
+          onChange={(event) => { this.handleChange(event.target.getContent()); }}
         />
       </div>
     );
@@ -101,7 +100,7 @@ export default class ReactTinyMce extends React.Component<IReactTinyMceProps, IR
       </div>
     );
   }
-  
+
   /**
    * Sets the state of the current TSX file and
    * invokes the saveRteContent callback with
@@ -111,7 +110,7 @@ export default class ReactTinyMce extends React.Component<IReactTinyMceProps, IR
    * @memberof ReactTinyMce
    */
   private handleChange(content: string): void {
-    this.setState({content: content}, () => {
+    this.setState({ content: content }, () => {
       this.props.saveRteContent(content);
     });
   }
